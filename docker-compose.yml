@@ -1,8 +1,8 @@
 # Runs backend (Laravel + Postgres + Redis) and frontend (Vite) together.
 # Each project's own compose file is still usable standalone from its directory.
 include:
-  - path: habita-backend/compose.yaml
+  - path: ../habita-backend/compose.yaml
     project_directory: habita-backend
     env_file: habita-backend/.env
-  - path: habita-frontend/docker-compose.yml
+  - path: ../habita-frontend/docker-compose.yml
     project_directory: habita-frontend
