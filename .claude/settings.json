@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(.claudeignore)"
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-dev": true
+  }
+}
