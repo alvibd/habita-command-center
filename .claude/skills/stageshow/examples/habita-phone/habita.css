@@ -1,0 +1,574 @@
+/* Habita on iPhone. Every rule is scoped to the demo. */
+.hb {
+  & .ss-stage {
+    --ss-accent: #ffcc00;
+    --ss-accent-soft: rgba(255, 204, 0, 0.14);
+    --hb-yellow: #ffcc00;
+    --hb-violet: #b13bff;
+    --hb-purple: #471396;
+    --hb-ink: #090040;
+    --hb-text: #f5f1ff;
+    --hb-faint: rgba(224, 214, 255, 0.6);
+    --hb-glass: rgba(255, 255, 255, 0.06);
+    --hb-glass-edge: rgba(255, 255, 255, 0.1);
+    /* The card opening: quick off the tap, long soft settle, as iOS does */
+    --hb-open: cubic-bezier(0.3, 0.75, 0.1, 1);
+    overflow: hidden;
+    border-radius: 16px;
+    background: #090040;
+  }
+
+  /* A forest glow behind the phone: the page's only color, low and wide */
+  .hb-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(55% 45% at 50% 18%, rgba(177, 59, 255, 0.3), transparent 70%),
+      radial-gradient(60% 50% at 80% 100%, rgba(71, 19, 150, 0.6), transparent 70%);
+  }
+
+  /* Pinned, bottom bleed: a gutter from the top, centered, off the bottom */
+  .hb-phone {
+    position: absolute;
+    top: 44px;
+    left: 48px;
+    box-shadow: 0 40px 80px -30px rgba(3, 0, 24, 0.9);
+  }
+
+  /* ---- Today ---- */
+
+  .hb-list {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(90% 40% at 15% 0%, rgba(177, 59, 255, 0.26), transparent 70%),
+      radial-gradient(70% 40% at 100% 30%, rgba(71, 19, 150, 0.55), transparent 70%),
+      #090040;
+    transition: opacity 0.6s ease;
+  }
+
+  .hb-list[data-back] {
+    opacity: 0.5;
+  }
+
+  .hb-head {
+    position: absolute;
+    top: 66px;
+    right: 20px;
+    left: 20px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .hb-head__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hb-title {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 41px;
+    color: var(--hb-text);
+  }
+
+  /* The week, as a strip of liquid-glass pills; today is the lit one */
+  .hb-week {
+    position: absolute;
+    top: 142px;
+    right: 20px;
+    left: 20px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+
+  .hb-day {
+    display: grid;
+    justify-items: center;
+    gap: 4px;
+    padding: 10px 0 11px;
+    border-radius: 22px;
+    background: var(--hb-glass);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(18px) saturate(1.4);
+  }
+
+  .hb-day__letter {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--hb-faint);
+  }
+
+  .hb-day__date {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+    color: var(--hb-text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hb-day[data-today] {
+    background: var(--hb-yellow);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .hb-day[data-today] .hb-day__letter {
+    color: rgba(9, 0, 64, 0.6);
+  }
+
+  .hb-day[data-today] .hb-day__date {
+    color: var(--hb-ink);
+  }
+
+  .hb-card,
+  .hb-slot {
+    position: absolute;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 132px;
+    border-radius: 28px;
+  }
+
+  .hb-card {
+    overflow: hidden;
+  }
+
+  .hb-card__text,
+  .hb-hero__text {
+    position: absolute;
+    bottom: 24px;
+    left: 20px;
+    display: grid;
+    gap: 6px;
+    justify-items: start;
+  }
+
+  .hb-card__title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: -0.02em;
+    color: var(--hb-ink);
+  }
+
+  .hb-card__sub {
+    margin-top: -4px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgba(9, 0, 64, 0.62);
+  }
+
+  .hb-line {
+    display: block;
+    border-radius: 6px;
+    background: rgba(9, 0, 64, 0.5);
+  }
+
+  /* The purple card carries light marks */
+  .hb-art--purple .hb-line {
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  .hb-art--purple .hb-line--faint {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .hb-line--faint {
+    background: rgba(9, 0, 64, 0.28);
+  }
+
+  /* The habit's glyph in a dark disc, right of the title */
+  .hb-badge {
+    position: absolute;
+    right: 20px;
+    bottom: 42px;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--hb-ink);
+    color: var(--hb-text);
+  }
+
+  .hb-badge__blank {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  /* Habit cards in the palette, each lit from its top right */
+  .hb-art--yellow {
+    background:
+      radial-gradient(70% 90% at 90% 0%, #ffe680 0%, transparent 60%),
+      linear-gradient(160deg, #ffd21a 0%, #ffcc00 100%);
+  }
+
+  .hb-art--violet {
+    background:
+      radial-gradient(70% 90% at 90% 0%, #d58eff 0%, transparent 60%),
+      linear-gradient(160deg, #bb52ff 0%, #b13bff 100%);
+  }
+
+  .hb-art--purple {
+    background:
+      radial-gradient(70% 90% at 90% 0%, #6b33c0 0%, transparent 60%),
+      linear-gradient(160deg, #521aa6 0%, #471396 100%);
+  }
+
+
+  /* ---- The card that becomes the habit ---- */
+
+  .hb-press {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.2s ease;
+    will-change: transform;
+  }
+
+  .hb-detail {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .hb-phone:has(.hb-slot[data-pressed]) .hb-press {
+    transform: scale(0.97);
+  }
+
+  .hb-detail__inner {
+    position: relative;
+    min-height: 100%;
+    background:
+      radial-gradient(80% 30% at 0% 34%, rgba(177, 59, 255, 0.26), transparent 70%),
+      radial-gradient(70% 30% at 100% 60%, rgba(71, 19, 150, 0.55), transparent 70%),
+      #090040;
+    will-change: transform;
+    transition: transform 0.62s var(--hb-open), background-color 0.18s ease-out;
+  }
+
+  /* Closing, the body and its ground go first so the card lands as only its art */
+  .hb-detail:not([data-open]) .hb-detail__inner {
+    background: transparent;
+    transition: transform 0.62s var(--hb-open);
+  }
+
+  .hb-detail:not([data-open]) .hb-body {
+    opacity: 0;
+    transition: opacity 0.08s ease-out;
+  }
+
+  .hb-hero {
+    position: relative;
+    height: 260px;
+    transition: clip-path 0.62s var(--hb-open);
+  }
+
+  /* Open or closed, the card's words sit where the list card's do, on the
+     panel's inner edge below */
+  .hb-hero__text {
+    left: 40px;
+  }
+
+  .hb-detail .ss-expand__content {
+    will-change: transform;
+  }
+
+  .hb-phone .ss-phone__status {
+    transition: color 0.3s ease;
+  }
+
+  .hb-phone[data-open] .ss-phone__status {
+    color: var(--hb-ink);
+  }
+
+  /* The habit's days, chosen when it was made: four of seven */
+  .hb-sched {
+    position: absolute;
+    top: 112px;
+    left: 40px;
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .hb-detail[data-open] .hb-sched {
+    opacity: 1;
+    transition-delay: 0.2s;
+  }
+
+  .hb-sched__day {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    color: rgba(9, 0, 64, 0.5);
+    background: rgba(9, 0, 64, 0.08);
+  }
+
+  .hb-sched__day[data-on] {
+    background: var(--hb-ink);
+    color: var(--hb-yellow);
+  }
+
+  .hb-hero__title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: -0.02em;
+    color: var(--hb-ink);
+  }
+
+  .hb-hero__sub {
+    margin-top: -4px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgba(9, 0, 64, 0.62);
+  }
+
+  .hb-hero__badge {
+    right: 40px;
+  }
+
+  .hb-close {
+    position: absolute;
+    top: 62px;
+    right: 20px;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(9, 0, 64, 0.16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    color: var(--hb-ink);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.15s ease;
+  }
+
+  .hb-detail[data-open] .hb-close {
+    opacity: 1;
+    transition-delay: 0.25s, 0s;
+  }
+
+  .hb-close[data-pressed] {
+    transform: scale(0.9);
+  }
+
+  .hb-body {
+    display: grid;
+    gap: 16px;
+    padding: 20px 20px 0;
+  }
+
+  /* The forest sits on a sheet of glass */
+  .hb-panel {
+    display: grid;
+    gap: 14px;
+    padding: 16px 20px 14px;
+    border-radius: 26px;
+    background: var(--hb-glass);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(24px) saturate(1.5);
+  }
+
+  .hb-panel__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .hb-panel__label {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--hb-text);
+  }
+
+  .hb-total {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--hb-yellow);
+  }
+
+  .hb-total__n {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 22px;
+    color: var(--hb-text);
+  }
+
+  .hb-total__unit {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--hb-faint);
+  }
+
+  .hb-forest {
+    display: grid;
+    gap: 4px;
+  }
+
+  .hb-forest__row {
+    display: grid;
+    grid-template-columns: 10px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+  }
+
+  .hb-forest__plots {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 2px;
+  }
+
+  .hb-forest__day {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 14px;
+    color: var(--hb-faint);
+  }
+
+  .hb-plot {
+    position: relative;
+    display: grid;
+    place-items: end center;
+    height: 30px;
+    padding-bottom: 3px;
+    border-radius: 8px;
+  }
+
+  .hb-tree {
+    display: block;
+    grid-area: 1 / 1;
+  }
+
+  .hb-tree--a { color: #ffcc00; }
+  .hb-tree--b { color: #f0b400; }
+  .hb-tree--c { color: #ffde59; }
+  .hb-tree--missed { color: var(--hb-purple); }
+
+  .hb-soil {
+    grid-area: 1 / 1;
+    width: 12px;
+    height: 4px;
+    margin-bottom: 1px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  /* Today's plot is marked on its own ground, before and after planting */
+  .hb-plot[data-plot='today'] {
+    background: var(--ss-accent-soft);
+  }
+
+  .hb-soil--today {
+    background: rgba(255, 204, 0, 0.6);
+    transition: opacity 0.3s ease 0.15s;
+  }
+
+  .hb-plot[data-planted] .hb-soil--today {
+    opacity: 0;
+  }
+
+  /* The tree grows out of the soil: a small overshoot on the glyph alone */
+  .hb-sprout {
+    grid-area: 1 / 1;
+    display: block;
+    transform: scale(0);
+    transform-origin: 50% 100%;
+    will-change: transform;
+    transition: transform 0.2s ease-in;
+  }
+
+  .hb-plot[data-planted] .hb-sprout {
+    transform: scale(1);
+    transition: transform 0.7s cubic-bezier(0.34, 1.5, 0.6, 1) 0.1s;
+  }
+
+  .hb-plant {
+    display: grid;
+    place-items: center;
+    height: 56px;
+    position: relative;
+    isolation: isolate;
+    border-radius: 28px;
+    color: var(--hb-ink);
+    font-size: 17px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .hb-plant::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-color: var(--hb-plant-fill, var(--hb-yellow));
+    box-shadow: var(--hb-plant-edge, inset 0 1px 0 rgba(255, 255, 255, 0.5));
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .hb-plant[data-done] {
+    --hb-plant-fill: rgba(255, 255, 255, 0.08);
+    --hb-plant-edge: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    color: var(--hb-yellow);
+  }
+
+  .hb-plant[data-pressed]::before {
+    transform: scale(0.97);
+  }
+
+  .hb-plant__label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .hb-rows {
+    display: grid;
+    gap: 8px;
+  }
+
+  .hb-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 56px;
+    padding: 0 16px;
+    border-radius: 20px;
+    background: var(--hb-glass);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .hb-row__icon {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  & .ss-stage[data-layout='compact'] .hb-phone {
+    top: 16px;
+    left: 16px;
+  }
+}
