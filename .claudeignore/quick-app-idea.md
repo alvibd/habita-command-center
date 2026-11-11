@@ -1,0 +1,1 @@
+Create a mobile app that will allow me to blacklist apps on my phone, if I ever need to access them, I will be required to open up the front camera and show myself live on camera performing 5 squats, the application will verify this performance by confirming with AI and/or image processing.
