@@ -15,3 +15,4 @@ node_modules/
 .claude/skills/stageshow/*.webm
 .claude/skills/stageshow/*.tsbuildinfo
 showcase/dist/
+showcase/node_modules
