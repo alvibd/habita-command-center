@@ -1,3 +1,17 @@
 
 ./.claudeignore
 .claude/settings.local.json
+node_modules/
+
+# Stageshow: everything running it writes inside its own folder.
+# The skill itself stays a clean upstream copy; only these generated paths are ignored.
+.claude/skills/stageshow/node_modules/
+.claude/skills/stageshow/playground/dist/
+.claude/skills/stageshow/shots/
+.claude/skills/stageshow/*.png
+.claude/skills/stageshow/*.jpg
+.claude/skills/stageshow/*.gif
+.claude/skills/stageshow/*.mp4
+.claude/skills/stageshow/*.webm
+.claude/skills/stageshow/*.tsbuildinfo
+showcase/dist/
